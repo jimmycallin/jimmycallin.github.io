@@ -1,0 +1,57 @@
+# Harmony Jekyll theme general configurations
+
+# Base URL
+baseurl:
+
+# Site live URL
+url:
+
+# Localhost
+# url: http://127.0.0.1:4000
+
+# Harmony theme configuration. Please change accordingly.
+harmony:
+  name: datalingo
+  # Little description about your site
+  description:
+  meta_description: Jimmy Callin usually writes about natural language processing and all things surrounding.
+  basetheme: theme-base-01 # pre defined thmes are darken, blue-water, redish.
+  author: # Author details
+    name: Jimmy Callin
+    email: jimmy.callin@gmail.com
+    url: http://jimmycallin.github.io
+
+  # Google Analytics key, leave blank to ignore
+  google_analytics_key: UA-xxxx-x
+
+  # Profile links, leave blank to ignore
+  social:
+    github: jimmycallin
+    twitter: jimmycallin
+    facebook:
+    gplus:
+    dribble:
+    pinterest:
+  # Toggle disclaimer in footer
+  show_disclaimer: false
+
+# Conversion / Build settings
+markdown:    kramdown
+highlighter: pygments # this is how you put pygments config in jekyll 2.0 instead of pygments: true
+
+# Permalinks
+permalink: pretty
+
+exclude:
+  - CNAME
+  - Gemfile
+  - Rakefile
+  - README.md
+  - .gitignore
+  - .sass-cache
+  - Gemfile.lock
+
+# Sass conversion configs
+sass:
+    sass_dir: assets/css/_sass
+    style: :compressed
