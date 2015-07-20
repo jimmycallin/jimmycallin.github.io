@@ -51,6 +51,8 @@ exclude:
   - .sass-cache
   - Gemfile.lock
 
+related_posts: false
+
 # Sass conversion configs
 sass:
     sass_dir: assets/css/_sass
