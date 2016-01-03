@@ -17,7 +17,7 @@ As an example, I have some code that outputs a dictionary of features in the fol
 
     Number=Sing|Definite=Ind|Gender=Com|Case=Nom
 
-The problem arises whenever I rerun the output and want to see if any differences arises between runs. Since the order of the dictionary output is determined by the hashing of the original keys, I cannot use e.g. `git diff` to compare the previous commited output with the current one. 
+The problem appears whenever I rerun the output and want to see if any differences arise between runs. Since the order of the dictionary output is determined by the hashing of the original keys, I cannot use e.g. `git diff` to compare the previous commited output with the current one. 
 
 If you have complete control and knowledge of your environment, your best bet is to either use `OrderedDict` and its counterparts whenever the sorting order cannot be assumed, or to simply sort the items of your dictionary ahead of iteration.
 
