@@ -5,9 +5,9 @@ title: Make your scientific Python 3 code reproducible by deterministic hashing
 
 As of Python 3.3, the built in `hash` function is randomized by default -- [for very good reasons](https://mail.python.org/pipermail/python-announce-list/2012-March/009394.html)! In short, having a deterministic hash function in production code is quite a security risk. We can see the effect of a randomized hash function by outputting the content of a set on multiple runs:
 
-    python -c "import os; print(set(['A','B','C']))"
+    python -c "print(set(['A','B','C']))"
     {'A', 'C', 'B'}
-    python -c "import os; print(set(['A','B','C']))"
+    python -c "print(set(['A','B','C']))"
     {'B', 'C', 'A'}
 
 
@@ -25,7 +25,6 @@ Most of the time, we don't have this luxury. I quite often rely upon separate li
 
     export PYTHONHASHSEED=0
     python run_experiment.py
-
 
 
 At last, I want to emphasize: this should only be done with the purpose of having a non-random ordering of sets and dictionaries! If you actually want a deterministic hash value of e.g. a string, you should almost always use [hashlib](https://docs.python.org/3/library/hashlib.html).
