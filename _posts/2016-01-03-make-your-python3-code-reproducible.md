@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Make your scientific Python 3 code reproducible by deterministic hashing
+comments: true
 ---
 
 As of Python 3.3, the built in `hash` function is randomized by default -- [for very good reasons](https://mail.python.org/pipermail/python-announce-list/2012-March/009394.html)! In short, having a deterministic hash function in production code is quite a security risk. We can see the effect of a randomized hash function by outputting the content of a set on multiple runs:

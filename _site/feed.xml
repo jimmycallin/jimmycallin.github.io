@@ -3,19 +3,44 @@
   <channel>
     <title></title>
     <description></description>
-    <link>/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 20 Jul 2015 15:59:46 +0800</pubDate>
-    <lastBuildDate>Mon, 20 Jul 2015 15:59:46 +0800</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
+    <link>https://jimmycallin.github.io/</link>
+    <atom:link href="https://jimmycallin.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 03 Jan 2016 22:49:46 +0100</pubDate>
+    <lastBuildDate>Sun, 03 Jan 2016 22:49:46 +0100</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
     
       <item>
-        <title>First post, please ignore.</title>
-        <description>&lt;p&gt;Content coming soon-ish.&lt;/p&gt;
+        <title>Make your scientific Python 3 code reproducible by deterministic hashing</title>
+        <description>&lt;p&gt;As of Python 3.3, the built in &lt;code&gt;hash&lt;/code&gt; function is randomized by default – &lt;a href=&quot;https://mail.python.org/pipermail/python-announce-list/2012-March/009394.html&quot;&gt;for very good reasons&lt;/a&gt;! In short, having a deterministic hash function in production code is quite a security risk. We can see the effect of a randomized hash function by outputting the content of a set on multiple runs:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python -c &quot;print(set([&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]))&quot;
+{&#39;A&#39;, &#39;C&#39;, &#39;B&#39;}
+python -c &quot;print(set([&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]))&quot;
+{&#39;B&#39;, &#39;C&#39;, &#39;A&#39;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For scientific code, though, this could potentially be a problem. Since we want to make sure our work is as reproducible as possible, any stochastic elements will potentially make it difficult to regenerate previous experimental results.&lt;/p&gt;
+
+&lt;p&gt;As an example, I have some code that outputs a dictionary of features in the following format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Number=Sing|Definite=Ind|Gender=Com|Case=Nom
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem appears whenever I rerun the output and want to see if any differences arise between runs. Since the order of the dictionary output is determined by the hashing of the original keys, I cannot use e.g. &lt;code&gt;git diff&lt;/code&gt; to compare the previous commited output with the current one.&lt;/p&gt;
+
+&lt;p&gt;If you have complete control and knowledge of your environment, your best bet is to either use &lt;code&gt;OrderedDict&lt;/code&gt; and its counterparts whenever the sorting order cannot be assumed, or to simply sort the items of your dictionary ahead of iteration.&lt;/p&gt;
+
+&lt;p&gt;Most of the time, we don’t have this luxury. I quite often rely upon separate libraries and scripts for my work that I cannot in good faith start modifying. Instead, we could ahead of running the experiments set the environment variable &lt;a href=&quot;https://docs.python.org/3.3/using/cmdline.html#envvar-PYTHONHASHSEED&quot;&gt;&lt;code&gt;PYTHONHASHSEED&lt;/code&gt;&lt;/a&gt; to an integer value.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export PYTHONHASHSEED=0
+python run_experiment.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At last, I want to emphasize: this should only be done with the purpose of having a non-random ordering of sets and dictionaries! If you actually want a deterministic hash value of e.g. a string, you should almost always use &lt;a href=&quot;https://docs.python.org/3/library/hashlib.html&quot;&gt;hashlib&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 20 Jul 2015 00:00:00 +0800</pubDate>
-        <link>/2015/07/20/first-post-please-ignore/</link>
-        <guid isPermaLink="true">/2015/07/20/first-post-please-ignore/</guid>
+        <pubDate>Sun, 03 Jan 2016 00:00:00 +0100</pubDate>
+        <link>https://jimmycallin.github.io/2016/01/03/make-your-python3-code-reproducible/</link>
+        <guid isPermaLink="true">https://jimmycallin.github.io/2016/01/03/make-your-python3-code-reproducible/</guid>
         
         
       </item>

@@ -3,11 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Help / FAQ</title>
+        <title>Make your scientific Python 3 code reproducible by deterministic hashing</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Jimmy Callin usually writes about natural language processing and all things surrounding.">
         <link rel="canonical"
-        href="https://jimmycallin.github.io/faq/">
+        href="https://jimmycallin.github.io/2016/01/03/make-your-python3-code-reproducible/">
 
         <!-- Harmony styles -->
         <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
@@ -40,22 +40,94 @@
             </div>
         </header>
         <div class="page-content wc-container">
-	<div class="post">
-		<h1>Help / FAQ</h1>
-		<div class="post">
-			<dl>
-  <dt>What is harmony?</dt>
-  <dd>Harmony is a free jekyll theme, for bloggers who love jekyll. Designed and build by <a href="http://gayanvirajith.github.io">Gayan Virajith</a> &amp; <a href="http://maheshikalakmali.github.io">Maheshika Lakmali</a>.</dd>
-  <dt>Why are you doing this?</dt>
-  <dd>For experience! Free resources are always good way to learn what you love, also help us to produce good digital work and it might end up being useful to someone.</dd>
-  <dt>Well, still have something in your mind?</dt>
-  <dd>Please drop a line to <a href="gayanvirajith@gmail.com">gayanvirajith@gmail.com</a> or an <a href="https://github.com/gayanvirajith/harmony/issues/new">issue</a> on Github, I am glad to response.</dd>
-</dl>
 
+	<div class="post">
+		<h1>Make your scientific Python 3 code reproducible by deterministic hashing</h1>
+		<span class="post-date">03 Jan 2016</span>
+		<div class="post">
+			<p>As of Python 3.3, the built in <code>hash</code> function is randomized by default – <a href="https://mail.python.org/pipermail/python-announce-list/2012-March/009394.html">for very good reasons</a>! In short, having a deterministic hash function in production code is quite a security risk. We can see the effect of a randomized hash function by outputting the content of a set on multiple runs:</p>
+
+<pre><code>python -c "print(set(['A','B','C']))"
+{'A', 'C', 'B'}
+python -c "print(set(['A','B','C']))"
+{'B', 'C', 'A'}
+</code></pre>
+
+<p>For scientific code, though, this could potentially be a problem. Since we want to make sure our work is as reproducible as possible, any stochastic elements will potentially make it difficult to regenerate previous experimental results.</p>
+
+<p>As an example, I have some code that outputs a dictionary of features in the following format:</p>
+
+<pre><code>Number=Sing|Definite=Ind|Gender=Com|Case=Nom
+</code></pre>
+
+<p>The problem appears whenever I rerun the output and want to see if any differences arise between runs. Since the order of the dictionary output is determined by the hashing of the original keys, I cannot use e.g. <code>git diff</code> to compare the previous commited output with the current one.</p>
+
+<p>If you have complete control and knowledge of your environment, your best bet is to either use <code>OrderedDict</code> and its counterparts whenever the sorting order cannot be assumed, or to simply sort the items of your dictionary ahead of iteration.</p>
+
+<p>Most of the time, we don’t have this luxury. I quite often rely upon separate libraries and scripts for my work that I cannot in good faith start modifying. Instead, we could ahead of running the experiments set the environment variable <a href="https://docs.python.org/3.3/using/cmdline.html#envvar-PYTHONHASHSEED"><code>PYTHONHASHSEED</code></a> to an integer value.</p>
+
+<pre><code>export PYTHONHASHSEED=0
+python run_experiment.py
+</code></pre>
+
+<p>At last, I want to emphasize: this should only be done with the purpose of having a non-random ordering of sets and dictionaries! If you actually want a deterministic hash value of e.g. a string, you should almost always use <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a>.</p>
 
 		</div>
 	</div>
+
+
+	
+	<div class="related">
+		<h4>Related Posts</h2>
+		<ul class="posts">
+		    
+		</ul>
+	</div>
+	
+
+	<div class="post-footer">
+		<div class="column-1">
+			
+				<span><< Older</span>
+			
+		</div>
+		<div class="column-2"><a href="https://jimmycallin.github.io/ ">Home</a></div>
+		<div class="column-3">
+			
+				<span>Newer >></span>
+			
+		</div>
+
+        <!-- Disqus Comments -->
+        
+        <div id="disqus_thread"></div>
+        <script>
+        /**
+        * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+
+        var disqus_config = function () {
+        this.page.url = "https://jimmycallin.github.io/2016/01/03/make-your-python3-code-reproducible/"; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "/2016/01/03/make-your-python3-code-reproducible/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        //var disqus_developer = 1;
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//jimmycallin.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+	</div>
 </div>
+
+
         <footer class="main-footer">
             <div class="wc-container">
                 <!-- <div class="column one">

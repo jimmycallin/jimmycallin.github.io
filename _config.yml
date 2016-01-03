@@ -4,7 +4,7 @@
 baseurl:
 
 # Site live URL
-url:
+url: https://jimmycallin.github.io
 
 # Localhost
 # url: http://127.0.0.1:4000
@@ -19,7 +19,7 @@ harmony:
   author: # Author details
     name: Jimmy Callin
     email: jimmy.callin@gmail.com
-    url: http://jimmycallin.github.io
+    url: https://jimmycallin.github.io
 
   # Google Analytics key, leave blank to ignore
   google_analytics_key: UA-11040116-5
