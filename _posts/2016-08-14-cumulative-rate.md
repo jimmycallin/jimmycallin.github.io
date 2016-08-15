@@ -130,7 +130,7 @@ Oh boy, it really takes off in the end, doesn't it?
 
 I'm really not the right person to give sound advice on this, but one thing that's easy to miss is the cost of the fund. That is, how much of your profit goes to the bank? This is the big difference between actively maintained hedge funds, and passively maintained index funds.
 
-I took a quick look on my banks website, and a management fee of 1.7% on the profit on nedge funds seem to be fairly representative. In contrast, the same fee for index funds is usually around 0.4%. Furthermore, my choice of bank has an index fund tied to the stock market index of the Stockholm stock exchange, with the peculiarity that it is completely free.
+I took a quick look on my bank's website, and a management fee of 1.7% on the profit of hedge funds seem to be fairly representative. In contrast, the same fee for index funds is usually around 0.4%. Furthermore, my choice of bank has an index fund tied to the stock market index of the Stockholm stock exchange, with the peculiarity that it is completely free.
 
 What kind of difference does this make in 30 years?
 
