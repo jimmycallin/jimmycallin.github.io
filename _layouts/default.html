@@ -14,6 +14,12 @@
 
         <!-- MathJax -->
         <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+                }});
+        </script>
 
         <!-- Modernizr js -->
         <script async src="{{ site.baseurl }}/assets/js/modernizr.js"></script>

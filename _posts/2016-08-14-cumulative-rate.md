@@ -1,15 +1,8 @@
-
-
-```python
-%matplotlib inline
-import matplotlib.style
-import matplotlib.pylab
-import pandas as pd
-matplotlib.style.use("ggplot")
-matplotlib.pylab.rcParams['figure.figsize'] = 8, 6
-```
-
-# How can early monthly saving affect your later life?
+---
+layout: post
+title: How can early monthly saving affect your later life?
+comments: true
+---
 
 I have recently started to earn a paycheck that allows me to consider investing on a recurrent schedule. Since I have never really thought much about funds, or to be honest finance in general, it was difficult for me to visualize the benefits of early investments. Why not just wait a few more years until I make even more? How much of a difference will these years in between really make? I decided to look a bit closer using methods that make sense to me personally.
 
@@ -27,6 +20,8 @@ Using Python, we can implement this as:
 
 
 ```python
+import pandas as pd
+
 def cumulative_rate(start_amount, yearly_rate, months_saving):
     monthly_rate = 1 + yearly_rate/12
     return start_amount * (monthly_rate ** months_saving)
@@ -126,7 +121,7 @@ pd.DataFrame({'with monthly saving 8% rate': months.map(with_saving),
             .plot()
 ```
 
-![png](public/output_11_1.png)
+![png](output_11_1.png)
 
 
 Oh boy, it really takes off in the end, doesn't it?
@@ -163,7 +158,7 @@ pd.DataFrame(data) \
             .plot()
 ```
 
-![png](public/output_14_1.png)
+![png](output_14_1.png)
 
 
 So by the time I am well within my fifties, I would have lost 20% of my profit on fees if I were to choose a hedge fund with the same rate of return.
