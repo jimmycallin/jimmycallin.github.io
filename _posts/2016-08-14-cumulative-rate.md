@@ -158,7 +158,7 @@ pd.DataFrame(data) \
             .plot()
 ```
 
-![png](http://jimmycallin.github.io/public/output_11_1.png)
+![png](http://jimmycallin.github.io/public/output_14_1.png)
 
 
 So by the time I am well within my fifties, I would have lost 20% of my profit on fees if I were to choose a hedge fund with the same rate of return.
