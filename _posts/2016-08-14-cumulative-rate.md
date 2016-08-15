@@ -62,7 +62,7 @@ Now what if I have €1,000 on the bank, and put away €100 monthly for ten yea
 
 
 ```python
-saving_with_interest_rate = cumulative_rate_monthly_saving(1000, 0.1, 10*12, 100)
+saving_with_interest_rate = cumulative_rate_monthly_saving(1000, 0.08, 10*12, 100)
 saving_without_interest_rate = cumulative_rate_monthly_saving(1000, 0, 10*12, 100)
 print("Saving €100 monthly with 0% interest for 10 years: €{:,.0f}" \
       .format(saving_without_interest_rate))
@@ -71,22 +71,22 @@ print("Saving €100 monthly with 8% interest for 10 years: €{:,.0f}" \
 ```
 
     Saving €100 monthly with 0% interest for 10 years: €13,000
-    Saving €100 monthly with 8% interest for 10 years: €23,362
+    Saving €100 monthly with 8% interest for 10 years: €20,636
 
 
 Now that's pretty motivating, but it still doesn't tell me why I shouldn't just spend the money now and save more later when I earn even more. How much would I make if I simply spent all my extra money on new stuff for the coming five years, and doubled the amount of monthly savings for five years thereafter?
 
 
 ```python
-first_five_years = cumulative_rate_monthly_saving(1000, 0.1, 10*12, 0)
-last_five_years = cumulative_rate_monthly_saving(first_five_years, 0.1, 5*12, 200)
+first_five_years = cumulative_rate_monthly_saving(1000, 0.08, 10*12, 0)
+last_five_years = cumulative_rate_monthly_saving(first_five_years, 0.08, 5*12, 200)
 print("Saving €200 with 8% interest for 5 years: €{:,.0f}".format(last_five_years))
 ```
 
-    Saving €200 with 8% interest for 5 years: €20,070
+    Saving €200 with 8% interest for 5 years: €18,100
 
 
-So despite saving twice as much five years into the future, I would still have lost 15% of my return compared to saving the same amount of money but starting now. I guess I better start saving.
+So despite saving twice as much five years into the future, I would still have lost 12% of my return compared to saving the same amount of money but starting now. I guess I better start saving.
 
 But hold on, why _now_ now? I have no idea when I will need this money. What difference does it make if I start now compared to in another five years, if I don't need it until I'm old and retired? Here's where the _compound_ part of the interest really displays its importance. Let's plot the development of your funds for the coming twenty years, with and without savings, and with and without interest rate.
 
